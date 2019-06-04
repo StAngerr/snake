@@ -1,24 +1,20 @@
 
 import './styles/main.scss';
 
+import { Game } from "./game.controller";
+
 const field = document.getElementById('game-field');
+// field.style.width = 450 + 'px';
+// field.style.height = 450 + 'px';
+
 
 const context = field.getContext('2d');
 
+const newGame = new Game(context, field);
 
-let currentX = 10;
-let currentY = 10;
-const step = 5;
-const interval = setInterval(() => {
-    context.clearRect(0, 0, field.width, field.height);
-    context.beginPath();
-    context.arc(currentX, currentY, 2, 0 , 2 * Math.PI);
-    context.fillStyle = '#ccc';
-    context.fill();
-    currentX += step;
-    if (currentX >= field.width) {
-        clearInterval(interval);
-    }
-}, 50);
+newGame.startGame();
+
+
+
 
 
