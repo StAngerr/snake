@@ -2,12 +2,15 @@ export class Food {
     radius;
 
     constructor(radius = 5) {
-        this.radius = 5;
+        this.radius = radius;
     }
 
     appear = (context, x, y) => {
+        const startAngle = 0;
+        const endAngle = 2 * Math.PI;
+
         context.beginPath();
-        context.arc(x, y, this.radius, 0 , 2 * Math.PI);
+        context.arc(x, y, this.radius, startAngle, endAngle);
         context.fillStyle = '#2169cc';
         context.fill();
     }

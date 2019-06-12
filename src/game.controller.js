@@ -10,6 +10,7 @@ export const Directions = {
 };
 
 export class Game {
+  snakeSpeedMilisec = 100;
   context = null;
   field = null;
   snake;
@@ -24,19 +25,22 @@ export class Game {
   }
 
   startGame = () => {
+    const startX = 0;
+    const startY = 0;
     this.setKeyboardEvents();
     this.interval = setInterval(() => {
-      this.context.clearRect(0, 0, this.field.width, this.field.height);
+      this.context.clearRect(startX, startY, this.field.width, this.field.height);
       this.snake.draw(this.context);
       this.snake.move(this.field.width, this.field.height);
       this.generateFood();
-    }, 100);
+    }, this.snakeSpeedMilisec);
   }
 
   generateFood = () => {
-    this.food.appear(this.context,
-        generateRandom(0, this.field.width - this.food.getRadius()),
-        generateRandom(0, this.field.height - this.food.getRadius()))
+    const min = 0;
+    const maxX = this.field.width - this.food.getRadius();
+    const maxY = this.field.height - this.food.getRadius();
+    this.food.appear(this.context, generateRandom(min, maxX), generateRandom(min, maxY));
   }
 
   setKeyboardEvents() {

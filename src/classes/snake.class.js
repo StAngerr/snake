@@ -13,13 +13,16 @@ export class Snake {
     }
 
     draw = (context) => {
+        const startAngle = 0;
+        const endAngle = 2 * Math.PI;
         context.beginPath();
-        context.arc(this.currentX, this.currentY, this.radius, 0 , 2 * Math.PI);
+        context.arc(this.currentX, this.currentY, this.radius, startAngle, endAngle);
         context.fillStyle = '#FF32CD';
         context.fill();
     }
 
     move = (fieldWidth, fieldHeight) => {
+        const minFieldValue = 0;
         switch (this.currentDirection) {
             case 'right':
                 this.currentX += this.step;
@@ -29,13 +32,13 @@ export class Snake {
                 break;
             case 'left':
                 this.currentX -= this.step;
-                if (this.currentX <= 0) {
+                if (this.currentX <= minFieldValue) {
                     this.currentX = fieldWidth - this.radius;
                 }
                 break;
             case 'up':
                 this.currentY -= this.step;
-                if (this.currentY <= 0) {
+                if (this.currentY <= minFieldValue) {
                     this.currentY = fieldHeight - this.radius;
                 }
                 break;
