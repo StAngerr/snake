@@ -6,6 +6,8 @@
   },
   "rules": {
     "no-magic-numbers": 1,
-    "semi": "error"
+    "semi": "error",
+    "no-console": "warn",
+    "no-debugger": "warn"
   }
 }

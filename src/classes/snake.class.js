@@ -16,7 +16,7 @@ export class Snake {
             part: 'head',
             x: this.currentX,
             y: this.currentY
-        }, {x: 5, y: 10}, {x:0, y: 10}];
+        }];
     }
 
     draw = (context) => {
@@ -24,8 +24,7 @@ export class Snake {
         const endAngle = 2 * Math.PI;
         context.beginPath();
         this.snakeBody.forEach((bodyPart) =>
-          context.arc(bodyPart.x, bodyPart.y, this.radius, startAngle, endAngle));
-        // context.arc(this.currentX, this.currentY, this.radius, startAngle, endAngle);
+        context.arc(bodyPart.x, bodyPart.y, this.radius, startAngle, endAngle));
         context.fillStyle = '#FF32CD';
         context.fill();
     }
@@ -36,37 +35,29 @@ export class Snake {
 
         switch (this.currentDirection) {
             case 'right':
-                //this.currentX += this.step;
                 x += this.step;
                 if (x >= fieldWidth) {
-                    // this.currentX = this.radius;
                     x = this.radius;
                 }
                 this.moveSnakeHead({ x });
                 break;
             case 'left':
-                // this.currentX -= this.step;
                 x -= this.step;
                 if (x <= minFieldValue) {
-                    // this.currentX = fieldWidth - this.radius;
                     x = fieldWidth - this.radius;
                 }
                 this.moveSnakeHead({ x });
                 break;
             case 'up':
-                // this.currentY -= this.step;
                 y -= this.step;
                 if (y <= minFieldValue) {
-                    // this.currentY = fieldHeight - this.radius;
                     y = fieldHeight - this.radius;
                 }
                 this.moveSnakeHead({ y });
                 break;
             case 'down':
-                // this.currentY += this.step;
                 y += this.step;
                 if (y >= fieldHeight) {
-                    // this.currentY = this.radius;
                     y = this.radius;
                 }
                 this.moveSnakeHead({ y });
@@ -75,12 +66,17 @@ export class Snake {
     }
 
     moveSnakeHead = (newCoordinates) => {
-        this.adjustSnakeBody();
+        const snakeHead = this.snakeBody[0];
         this.snakeBody[0] = {
-            ...this.snakeBody[0],
-            ...newCoordinates
+            ...snakeHead,
+            ...newCoordinates,
+            prevX: snakeHead.x,
+            prevY: snakeHead.y
         };
-        // this.adjustSnakeBody();
+        this.adjustSnakeBody();
+
+        this.currentY = this.snakeBody[0].y;
+        this.currentX = this.snakeBody[0].x;
     }
 
     adjustSnakeBody = () => {
@@ -88,11 +84,13 @@ export class Snake {
             if (index === 0) {
                 return;
             }
-            const { x, y } = ar[index - 1];
+            const { prevX, prevY } = ar[index - 1];
             ar[index] = {
                 ...snakePart,
-                x,
-                y
+                x: prevX,
+                y: prevY,
+                prevY: ar[index].y,
+                prevX: ar[index].x
             };
         });
     }
@@ -121,5 +119,20 @@ export class Snake {
                 break;
             default:
         }
+    }
+
+    getHeadCoordinates() {
+        return {
+            x: this.currentX,
+            y: this.currentY
+        };
+    }
+
+    addPartToBody() {
+        this.snakeBody.push({});
+    }
+
+    getRadius() {
+        return this.radius;
     }
 }
