@@ -9,9 +9,9 @@ export class Snake {
 
     snakeBody = [];
 
-    constructor(radius = 10, step = 5) {
+    constructor(radius = 7) {
         this.radius = radius;
-        this.step = step;
+        this.step = radius * 2;
         this.snakeBody = [{
             part: 'head',
             x: this.currentX,
@@ -20,13 +20,13 @@ export class Snake {
     }
 
     draw = (context) => {
-        const startAngle = 0;
         const endAngle = 2 * Math.PI;
-        context.beginPath();
-        this.snakeBody.forEach((bodyPart) =>
-        context.arc(bodyPart.x, bodyPart.y, this.radius, startAngle, endAngle));
-        context.fillStyle = '#FF32CD';
-        context.fill();
+        this.snakeBody.forEach((bodyPart) => {
+            context.beginPath();
+            context.fillStyle = '#FF32CD';
+            context.arc(bodyPart.x, bodyPart.y, this.radius, 0, endAngle);
+            context.fill();
+        });
     }
 
     move = (fieldWidth, fieldHeight) => {

@@ -10,7 +10,7 @@ export const Directions = {
 };
 
 export class Game {
-  snakeSpeedMilisec = 30;
+  snakeSpeedMilisec = 150;
   context = null;
   field = null;
   snake;
