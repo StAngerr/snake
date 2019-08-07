@@ -1,7 +1,10 @@
+import * as test from './components/test.comp';
 
 import './styles/main.scss';
 
 import { Game } from "./game.controller";
+
+console.log(test);
 
 const field = window.document.getElementById('game-field');
 // field.style.width = 450 + 'px';
