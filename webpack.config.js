@@ -1,11 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js'
+  },
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'inline-source-map',
@@ -13,18 +16,19 @@ module.exports = {
     rules: [{
       test: /\.scss$/,
       use: [
-        'style-loader',
+        { loader: MiniCssExtractPlugin.loader, options: { publicPath: '../../../' } },
         'css-loader',
         'sass-loader'
       ]
     },
       {
+        test: /\.(png|jpg|gif)$/i,
+        use: [ 'url-loader' ],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "eslint-loader",
-        options: {
-          // eslint options (if necessary)
-        }
+        loader: "eslint-loader"
       },
       {
         test: /\.js$/,
@@ -45,5 +49,8 @@ module.exports = {
     title: "Dev snake",
     filename: "index.html",
     template: "index.html"
+  }), new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[name].css'
   })]
 };
