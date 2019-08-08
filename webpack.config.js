@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -12,13 +13,17 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+    port: 3333
+  },
   module: {
     rules: [{
       test: /\.scss$/,
       use: [
         { loader: MiniCssExtractPlugin.loader, options: { publicPath: '../../../' } },
-        'css-loader',
-        'sass-loader'
+        { loader: 'css-loader', options: { sourceMap: true }},
+        { loader: 'sass-loader', options: { sourceMap: true }}
       ]
     },
       {
@@ -45,7 +50,7 @@ module.exports = {
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin()]
   },
-  plugins: [new HtmlWebpackPlugin({
+  plugins: [new CleanWebpackPlugin(), new HtmlWebpackPlugin({
     title: "Dev snake",
     filename: "index.html",
     template: "index.html"
