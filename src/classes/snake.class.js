@@ -1,4 +1,4 @@
-import {Directions} from "../game.controller";
+import {Directions} from "../controllers/game.controller";
 
 export class Snake {
     radius;
