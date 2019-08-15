@@ -1,4 +1,6 @@
 import { loginPage } from "./components/login/login";
+import { setChildren } from "redom";
+import { Home } from './components/home/home';
 
 export class AppRouter {
   constructor(elem, initialRoute) {
@@ -25,7 +27,7 @@ export class AppRouter {
         this.routerContainer.append(loginPage);
         break;
       case 'home':
-        console.log('home');
+        setChildren(this.routerContainer, [new Home()]);
         break;
       default:
         console.log('default');
