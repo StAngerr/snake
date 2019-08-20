@@ -10,15 +10,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-classes": "^7.5.5",
     "@babel/preset-env": "^7.4.5",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
-    "eslint-loader": "^2.1.2",
+    "eslint-loader": "^2.2.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
@@ -27,11 +29,12 @@
     "style-loader": "^0.23.1",
     "to-string-loader": "^1.1.5",
     "url-loader": "^2.1.0",
-    "webpack": "^4.32.2",
+    "webpack": "^4.39.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "bulma": "^0.7.5",
     "redom": "^3.24.1"
   }
 }

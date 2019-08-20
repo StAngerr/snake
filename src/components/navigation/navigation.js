@@ -8,11 +8,12 @@ export class Navigation {
     }
 
     render(menuItems) {
-        return el('div', el('ul', this.buildListItems(menuItems)));
+        return el('nav.container', el('ul.level.level-left', this.buildListItems(menuItems)));
     }
 
     buildListItems(items) {
-        return items.map(item => el(`li${this.active === item ? '.active-item' : ''}`, item));
+        const liClasses = `.level-item.has-text-centered.button.is-primary.is-narrow`;
+        return items.map(item => el(`li${liClasses}${this.active === item ? '.active-item' : ''}`, item));
     }
 
     setActive(name) {

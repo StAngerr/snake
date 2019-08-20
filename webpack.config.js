@@ -32,11 +32,6 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
-      },
-      {
-        test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -44,7 +39,11 @@ module.exports = {
             presets: ['@babel/preset-env'],
             plugins: ['@babel/plugin-proposal-class-properties']
           }
-        }
+        }},
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader"
       }]
   },
   optimization: {
