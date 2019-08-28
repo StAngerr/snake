@@ -28,13 +28,18 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "to-string-loader": "^1.1.5",
+    "ts-loader": "^6.0.4",
+    "tslint": "^5.19.0",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.5.3",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
-    "bulma": "^0.7.5",
-    "redom": "^3.24.1"
+    "@types/react": "^16.9.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   }
 }

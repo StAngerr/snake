@@ -30,21 +30,16 @@ module.exports = {
         test: /\.(png|jpg|gif)$/i,
         use: [ 'url-loader' ],
       },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          }
-        }},
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
-      }]
+        {
+          test: /\.(js|tsx?)$/,
+          use: [
+              { loader : 'ts-loader' },
+              { loader: 'tslint-loader' },
+              // { loader: 'babel-loader', options: { presets: ['@babel/preset-env'] }}
+          ],
+          exclude: /node_modules/
+        }
+      ]
   },
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin()]
