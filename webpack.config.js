@@ -6,8 +6,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/index.js'
+    main: './src/index.tsx'
   },
+  mode: 'development',
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
@@ -16,6 +17,9 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     port: 3333
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
   },
   module: {
     rules: [{
@@ -33,9 +37,9 @@ module.exports = {
         {
           test: /\.(js|tsx?)$/,
           use: [
-              { loader : 'ts-loader' },
-              { loader: 'tslint-loader' },
-              // { loader: 'babel-loader', options: { presets: ['@babel/preset-env'] }}
+            { loader: 'babel-loader' },
+            { loader : 'ts-loader' },
+            { loader: 'tslint-loader' },
           ],
           exclude: /node_modules/
         }

@@ -4,7 +4,6 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "sourceMap": true,
-    "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "lib": ["es6", "dom"],
