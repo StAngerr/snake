@@ -1,9 +1,14 @@
 import * as React from 'react';
+import { History } from 'history';
 
-export const Login = () => {
+interface Props {
+    history: History;
+}
+
+export const Login = ({ history }: Props) => {
 
     const login = () => {
-
+        history.push('/home');
     }
 
     return <section className="login-page">
