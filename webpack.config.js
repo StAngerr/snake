@@ -9,6 +9,7 @@ module.exports = {
     main: './src/index.tsx'
   },
   mode: 'development',
+  context: path.resolve(__dirname, './'),
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')

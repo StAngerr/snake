@@ -1,5 +1,10 @@
 import * as React from 'react';
+import { Navigation } from '../header/components/Navigation';
+import { GameField } from './components/GameField';
 
 export const Home = () => {
-    return <h3> Home page</h3>;
-}
+    return <div className="tile is-parent container is-vertical">
+        <Navigation />
+        <GameField />
+    </div>;
+};

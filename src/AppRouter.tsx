@@ -10,9 +10,9 @@ interface Props {
 
 export const AppRouter = ({ children }: Props) => {
     return <Router>
-        <Route exact path="/" component={Login}/>
+        <Route exact path="/" component={Home}/>
         <Route path="/home" component={Home}/>
         <Route path="/login" component={Login}/>
         {children}
     </Router>;
-}
+};

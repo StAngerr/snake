@@ -1,6 +1,6 @@
 import { Snake } from "../classes/snake.class";
 import { Food } from "../classes/food.class";
-import { generateRandom } from "../utils";
+import { generateRandom } from '../../common/utils';
 
 export const Directions = {
   left: 'left',
@@ -42,18 +42,18 @@ export class Game {
         this.food.draw(this.context);
       }
     }, this.snakeSpeedMilisec);
-  }
+  };
 
   generateFood = () => {
       const min = 0;
       const maxX = this.field.width - this.food.getRadius();
       const maxY = this.field.height - this.food.getRadius();
       this.food.appear(generateRandom(min, maxX), generateRandom(min, maxY));
-  }
+  };
 
   checkFoodCollision = () => {
     return this.checkByX() && this.checkByY();
-  }
+  };
 
   checkByY() {
     const snakeCoordinates = this.snake.getHeadCoordinates();

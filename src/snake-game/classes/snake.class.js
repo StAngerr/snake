@@ -1,4 +1,4 @@
-import {Directions} from "../controllers/game.controller";
+import { Directions } from "../controllers/game.controller";
 
 export class Snake {
     radius;
@@ -15,7 +15,7 @@ export class Snake {
         this.snakeBody = [{
             part: 'head',
             x: this.currentX,
-            y: this.currentY
+            y: this.currentY,
         }];
     }
 
@@ -27,7 +27,7 @@ export class Snake {
             context.arc(bodyPart.x, bodyPart.y, this.radius, 0, endAngle);
             context.fill();
         });
-    }
+    };
 
     move = (fieldWidth, fieldHeight) => {
         const minFieldValue = 0;
@@ -63,7 +63,7 @@ export class Snake {
                 this.moveSnakeHead({ y });
                 break;
         }
-    }
+    };
 
     moveSnakeHead = (newCoordinates) => {
         const snakeHead = this.snakeBody[0];
@@ -71,13 +71,13 @@ export class Snake {
             ...snakeHead,
             ...newCoordinates,
             prevX: snakeHead.x,
-            prevY: snakeHead.y
+            prevY: snakeHead.y,
         };
         this.adjustSnakeBody();
 
         this.currentY = this.snakeBody[0].y;
         this.currentX = this.snakeBody[0].x;
-    }
+    };
 
     adjustSnakeBody = () => {
         this.snakeBody.forEach((snakePart, index, ar) => {
@@ -90,10 +90,10 @@ export class Snake {
                 x: prevX,
                 y: prevY,
                 prevY: ar[index].y,
-                prevX: ar[index].x
+                prevX: ar[index].x,
             };
         });
-    }
+    };
 
     changeDirection = (key) => {
         switch (key) {
@@ -119,12 +119,12 @@ export class Snake {
                 break;
             default:
         }
-    }
+    };
 
     getHeadCoordinates() {
         return {
             x: this.currentX,
-            y: this.currentY
+            y: this.currentY,
         };
     }
 

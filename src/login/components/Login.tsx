@@ -6,19 +6,26 @@ interface Props {
 }
 
 export const Login = ({ history }: Props) => {
-
     const login = () => {
         history.push('/home');
-    }
+    };
 
-    return <section className="login-page">
-        <section className="login-form-section">
-            <h2>Please login</h2>
-            <form>
-                <input type="text"/>
-                <input type="password"/>
-                <button type="submit" onClick={login}>Login</button>
-            </form>
-        </section>
+    return <section className="section">
+            <div className="container tile is-vertical is-6">
+                <h2 className="title">Snake 🐍 </h2>
+                <form>
+                    <div className="field">
+                        <label className="label">Email</label>
+                        <input className="input" type="text"/>
+                    </div>
+                    <div className="field">
+                        <label className="label">Password</label>
+                        <input className="input" type="password"/>
+                    </div>
+                    <div className="control">
+                        <button className="button" type="submit" onClick={login}>Login</button>
+                    </div>
+                </form>
+            </div>
     </section>;
 };
