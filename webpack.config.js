@@ -17,6 +17,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
     port: 3333
   },
   resolve: {

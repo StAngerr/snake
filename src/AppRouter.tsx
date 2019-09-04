@@ -1,18 +1,16 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route} from 'react-router-dom';
+import { Switch } from 'react-router';
+
 import * as React from 'react';
 import { Home } from './home/Home';
-import { ReactChildren } from 'react';
-import { Login } from './login/components/Login';
+import { NotFound } from './common/components/NotFound';
 
-interface Props {
-    children?: ReactChildren;
-}
-
-export const AppRouter = ({ children }: Props) => {
-    return <Router>
-        <Route exact path="/" component={Home}/>
-        <Route path="/home" component={Home}/>
-        <Route path="/login" component={Login}/>
-        {children}
-    </Router>;
+export const AppRouter = () => {
+    return <BrowserRouter>
+        <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/home" component={Home}/>
+            <Route component={NotFound}/>
+        </Switch>
+    </BrowserRouter>;
 };

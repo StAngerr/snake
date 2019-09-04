@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { Navigation } from '../header/components/Navigation';
 import { GameField } from './components/GameField';
 

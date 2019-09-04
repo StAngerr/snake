@@ -7,6 +7,7 @@ interface Props {
 
 export const Login = ({ history }: Props) => {
     const login = () => {
+        localStorage.setItem('login', 'true');
         history.push('/home');
     };
 
