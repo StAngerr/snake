@@ -9,6 +9,7 @@
     "return-undefined": true,
     "quotemark": [true, "single", "jsx-double"],
     "interface-name": [true, "never-prefix"],
-    "ordered-imports": false
+    "ordered-imports": false,
+    "object-literal-sort-keys": false
   }
 }

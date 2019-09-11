@@ -1,6 +1,6 @@
 import { Snake } from "../classes/snake.class";
 import { Food } from "../classes/food.class";
-import { generateRandom } from '../../common/utils';
+import { generateRandom } from '../../common/utils/general.utils';
 
 export const Directions = {
   left: 'left',

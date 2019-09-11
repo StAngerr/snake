@@ -5,6 +5,7 @@
     "noImplicitReturns": true,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "jsx": "react",
     "lib": ["es6", "dom"],
     "module": "es2015",
