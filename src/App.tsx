@@ -1,17 +1,20 @@
 import React from 'react';
-import { AppRouter } from './AppRouter';
 import { Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { Login } from './login/components/Login';
+import { ProtectedRoute } from './common/hoc/ProtectedRoute.hoc';
+import { Home } from './home/Home';
 
 export const App = () => {
-  if (!localStorage.getItem('token')) {
-    return (
-      <BrowserRouter>
+  return (
+    <BrowserRouter>
+      <Switch>
         <Route path="/login" component={Login} />
+        <ProtectedRoute path="/" component={Home} />
+        <ProtectedRoute path="/home" component={Home} />
         <Route path="*" component={Login} />
-      </BrowserRouter>
-    );
-  }
-  return <AppRouter />;
+        {/*<Route component={NotFound} />*/}
+      </Switch>
+    </BrowserRouter>
+  );
 };
