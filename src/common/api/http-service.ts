@@ -1,13 +1,25 @@
-import Axios, { AxiosResponse } from 'axios';
+import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 class HttpService {
-    public get = <T>(url: string): Promise<AxiosResponse<T>> => {
-        return Axios.get<T>(url);
-    }
+  private defaultConfig = {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    },
+  };
 
-    public post = <T>(url: string, body: T): Promise<AxiosResponse<T>> => {
-        return Axios.post<T>(url, body);
-    }
+  public get = <T>(url: string): Promise<AxiosResponse<T>> => {
+    return Axios.get<T>(url);
+  };
+
+  public post = <T>(url: string, body: T, conf?: AxiosRequestConfig): Promise<AxiosResponse<T>> => {
+    return Axios.post<T>(url, body, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
+    });
+  };
 }
 
 export const httpService = new HttpService();
