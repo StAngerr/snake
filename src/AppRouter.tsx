@@ -1,16 +1,21 @@
-import { BrowserRouter, Route} from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Switch } from 'react-router';
 
 import * as React from 'react';
 import { Home } from './home/Home';
-import { NotFound } from './common/components/NotFound';
+import { Login } from './login/Login';
+import { ProtectedRoute } from './common/hoc/ProtectedRoute.hoc';
 
 export const AppRouter = () => {
-    return <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/home" component={Home}/>
-            <Route component={NotFound}/>
-        </Switch>
-    </BrowserRouter>;
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <ProtectedRoute path="/" component={Home} />
+        <ProtectedRoute path="/home" component={Home} />
+        <Route path="*" component={Login} />
+        {/*<Route component={NotFound} />*/}
+      </Switch>
+    </BrowserRouter>
+  );
 };

@@ -1,33 +1,19 @@
 import * as React from 'react';
-import { History } from 'history';
-import { httpService } from '../../common/api/http-service';
 import { ErrorMessage, Field, Form, Formik, FormikErrors } from 'formik';
 import { useCallback } from 'react';
 import { validateEmail, validatePassword, ValidationObject } from '../../common/utils/form-validation.utils';
-import { AxiosResponse } from 'axios';
 
 interface Props {
-  history: History;
+  onLogin: ({ email, password }: LoginFormValues) => void;
+  toggleForm: () => void;
 }
 
-interface LoginFormValues {
+export interface LoginFormValues {
   email: string;
   password: string;
 }
 
-export const Login = ({ history }: Props) => {
-  const login = ({ email, password }: LoginFormValues) => {
-    httpService
-      .post('http://www.localhost:3000/api/auth/login', {
-        email,
-        password,
-      })
-      .then((response: AxiosResponse) => {
-        localStorage.setItem('token', response.data.token);
-        history.push('/home');
-      });
-  };
-
+export const LoginForm = ({ onLogin, toggleForm }: Props) => {
   const getLoginFormInitialValues = useCallback((): LoginFormValues => ({ email: '', password: '' }), []);
 
   const validateForm = useCallback((values: LoginFormValues): FormikErrors<LoginFormValues> => {
@@ -44,10 +30,10 @@ export const Login = ({ history }: Props) => {
   }, []);
 
   return (
-    <section className="section">
+    <section className="tile is-child">
       <div className="container tile is-vertical is-6">
-        <h2 className="title">Snake 🐍 </h2>
-        <Formik validate={validateForm} onSubmit={login} initialValues={getLoginFormInitialValues()}>
+        <h2 className="title">Snake 🐍</h2>
+        <Formik validate={validateForm} onSubmit={onLogin} initialValues={getLoginFormInitialValues()}>
           <Form>
             <div className="field">
               <label className="label">Email</label>
@@ -63,7 +49,9 @@ export const Login = ({ history }: Props) => {
               <button className="button" type="submit">
                 Login
               </button>
-              <button className="button is-text">Register</button>
+              <button className="button is-text" onClick={toggleForm}>
+                Register
+              </button>
             </div>
           </Form>
         </Formik>

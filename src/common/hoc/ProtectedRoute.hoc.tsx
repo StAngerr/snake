@@ -1,17 +1,17 @@
 import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import React, { FunctionComponent } from 'react';
 
-interface Props<T> {
-  component: typeof React.Component | FunctionComponent<T>;
+interface Props {
+  component: typeof React.Component | FunctionComponent<any>;
   path?: string | string[];
 }
 
-export const ProtectedRoute = <T extends {}>({ component: RouteComponent, ...routeProps }: Props<T>) => {
+export const ProtectedRoute = ({ component: RouteComponent, ...routeProps }: Props) => {
   const token = localStorage.getItem('token');
   return (
     <Route
       {...routeProps}
-      render={(componentProps: RouteComponentProps<T>) => {
+      render={(componentProps: RouteComponentProps) => {
         return token ? <RouteComponent {...componentProps} /> : <Redirect to="/login" />;
       }}
     />
