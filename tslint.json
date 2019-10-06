@@ -10,6 +10,7 @@
     "quotemark": [true, "single", "jsx-double"],
     "interface-name": [true, "never-prefix"],
     "ordered-imports": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "semicolon": [true, "always", "ignore-bound-class-methods"]
   }
 }

@@ -1,7 +1,7 @@
-import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
+import { Route, Redirect, RouteComponentProps, RouteProps } from 'react-router-dom';
 import React, { FunctionComponent } from 'react';
 
-interface Props {
+interface Props extends RouteProps {
   component: typeof React.Component | FunctionComponent<any>;
   path?: string | string[];
 }

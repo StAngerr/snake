@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/index.tsx'
+    main: ['babel-polyfill', './src/index.tsx']
   },
   mode: 'development',
   context: path.resolve(__dirname, './'),

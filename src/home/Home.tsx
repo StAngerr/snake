@@ -1,18 +1,20 @@
 import * as React from 'react';
 
 import { Navigation } from '../header/components/Navigation';
-import { GameField } from './components/GameField';
-import { History } from 'history';
+import { ReactChild, ReactFragment } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-interface Props {
-  history?: History;
+interface Props extends RouteComponentProps {
+  children: ReactFragment | ReactChild;
 }
 
-export const Home = ({ history }: Props) => {
+const Home = ({ history, children }: Props) => {
   return (
     <div className="tile is-parent container is-vertical">
       <Navigation history={history} />
-      <GameField />
+      <section>{children}</section>
     </div>
   );
 };
+
+export default withRouter(Home);
