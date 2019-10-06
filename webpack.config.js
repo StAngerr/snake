@@ -1,13 +1,15 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/index.js'
+    main: './src/index.tsx'
   },
+  mode: 'development',
+  context: path.resolve(__dirname, './'),
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
@@ -15,7 +17,11 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
     port: 3333
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
   },
   module: {
     rules: [{
@@ -30,21 +36,16 @@ module.exports = {
         test: /\.(png|jpg|gif)$/i,
         use: [ 'url-loader' ],
       },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          }
-        }},
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
-      }]
+        {
+          test: /\.(js|tsx?)$/,
+          use: [
+            { loader: 'babel-loader' },
+            { loader : 'ts-loader' },
+            { loader: 'tslint-loader' },
+          ],
+          exclude: /node_modules/
+        }
+      ]
   },
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin()]

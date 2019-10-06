@@ -1,0 +1,15 @@
+{
+  "extends": "tslint:recommended",
+  "jsRules": true,
+  "max-line-length": {
+    "options": [120]
+  },
+  "rules": {
+    "no-use-before-declare": true,
+    "return-undefined": true,
+    "quotemark": [true, "single", "jsx-double"],
+    "interface-name": [true, "never-prefix"],
+    "ordered-imports": false,
+    "object-literal-sort-keys": false
+  }
+}

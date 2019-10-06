@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "module": "es2015",
+    "allowJs": true
+  },
+  "exclude": ["node_modules"]
+}
