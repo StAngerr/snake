@@ -17,8 +17,12 @@ class HttpService {
     return this.axiosInstance.get<T>(url).then((res: AxiosResponse) => res.data);
   };
 
-  public getWithResponseData = <T>(url: string): Promise<AxiosResponse<T>> => {
-    return this.axiosInstance.get<T>(url);
+  public put = <T>(url: string, body: T) => {
+    return this.axiosInstance.put<T>(url, body).then((res: AxiosResponse) => res.data);
+  };
+
+  public delete = (url: string) => {
+    return this.axiosInstance.delete(url).then((res: AxiosResponse) => res.data);
   };
 
   public post = <T>(url: string, body: T, conf?: AxiosRequestConfig): Promise<AxiosResponse<T>> => {

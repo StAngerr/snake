@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { UserList } from './components/UserList';
-import { getAllUsers } from '../common/api/user/user-api';
+import { deleteUser, getAllUsers, updateUser } from '../common/api/user/user-api';
 import { User } from '../common/types/User';
 
 interface UsersState {
@@ -9,18 +9,39 @@ interface UsersState {
 
 export const UserManagement = () => {
   const [usersState, setUsers] = useState<UsersState>({ users: [] });
-  // const user = { id: 'mock', name: 'mock', email: 'mock@mock.com'};
 
   useEffect(() => {
     const fetchUsers = async () => {
       const users = await getAllUsers();
-      setUsers({ ...usersState, users});
+      setUsers({ ...usersState, users });
     };
     fetchUsers();
   }, []);
 
-  return <section>
+  const handleUserUpdate = useCallback(
+    (userToUpdate: User) => {
+      updateUser(userToUpdate.id, userToUpdate).then((updatedUser: User) => {
+        setUsers({
+          ...usersState,
+          users: usersState.users.map((user: User) => (user.id === updatedUser.id ? updatedUser : user)),
+        });
+      });
+    },
+    [usersState],
+  );
+  const handleDeleteUser = useCallback((id: string) => {
+    deleteUser(id).then((res) => {
+      console.log('User was removed');
+    });
+  }, []);
+  const createUser = useCallback(() => {
+    return 1;
+  }, []);
+
+  return (
+    <section>
       <h3 className="title is-3">User management</h3>
-      <UserList users={usersState.users} />
-  </section>;
+      <UserList updateUser={handleUserUpdate} users={usersState.users} deleteUser={handleDeleteUser} />
+    </section>
+  );
 };
