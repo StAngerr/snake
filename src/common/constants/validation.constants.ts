@@ -5,5 +5,7 @@ export const formValidation = {
   passwordRequired: 'Password is Required.',
   passwordsMatch: 'Passwords should match.',
 
+  usernameRequired: 'Username is required.',
+
   invalidPhone: 'Invalid phone',
 };

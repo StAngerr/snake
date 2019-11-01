@@ -22,6 +22,16 @@ export const validateEmail = (value: string): ValidationObject => {
   return validField;
 };
 
+export const validateUsername = (value: string): ValidationObject => {
+  if (!value) {
+    return {
+      valid: false,
+      errorMsg: formValidation.usernameRequired,
+    };
+  }
+  return validField;
+};
+
 export const validatePassword = (value: string): ValidationObject => {
   if (!value) {
     return getInvalidObj(formValidation.passwordRequired);
