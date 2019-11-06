@@ -26,17 +26,13 @@ class HttpService {
   };
 
   public post = <T>(url: string, body: T, conf?: AxiosRequestConfig): Promise<AxiosResponse<T>> => {
-    return this.axiosInstance.post<T>(url, body, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
-    });
+    return this.axiosInstance.post<T>(url, body);
   };
 
   private authRequestInterceptor(config: any) {
     const authToken = localStorage.getItem('token');
     config.headers.Authorization = authToken;
+    config.headers['Content-Type'] = 'application/json';
     return config;
   }
 }

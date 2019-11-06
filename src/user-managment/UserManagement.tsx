@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { UserList } from './components/UserList';
-import { deleteUser, getAllUsers, updateUser } from '../common/api/user/user-api';
+import { deleteUser, getAllUsers, saveNewUser, updateUser } from '../common/api/user/user-api';
 import { User } from '../common/types/User';
 import { BtnDialog } from '../common/components/dialog/BtnDialog';
 import { CreateUserForm } from './components/CreateUserForm';
@@ -39,8 +39,11 @@ export const UserManagement = () => {
     });
   }, []);
   const createUser = useCallback((data: CreateForm) => {
-    console.log('Create user: ', data);
-    return 1;
+    saveNewUser({
+      ...data,
+      id: '',
+      name: data.username,
+    }).then(() => setCreateDialogOpened(false));
   }, []);
 
   return (
