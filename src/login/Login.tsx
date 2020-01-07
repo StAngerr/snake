@@ -54,6 +54,8 @@ export const Login = ({ history }: Props) => {
     <div className="tile is-parent">
       {formOpened.login && <LoginForm onLogin={login} toggleForm={() => toggleForms('registration')} />}
       {formOpened.registration && <RegistrationForm onRegister={register} toggleForm={() => toggleForms('login')} />}
+
+        <img src="/assets/Colorful_Animal_Snake.svg" alt=""/>
     </div>
   );
 };
