@@ -29,12 +29,14 @@
     "style-loader": "^0.23.1",
     "to-string-loader": "^1.1.5",
     "url-loader": "^2.1.0",
+    "vue-loader": "^15.7.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
-    "bulma": "^0.7.5",
-    "redom": "^3.24.1"
+    "vue": "^2.6.10"
   }
 }

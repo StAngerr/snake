@@ -1,12 +1,13 @@
+const { VueLoaderPlugin } = require('vue-loader');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/index.js'
+    main: './src/App.js'
   },
   output: {
     filename: '[name].js',
@@ -44,7 +45,12 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "eslint-loader"
-      }]
+      },
+        {
+          test: /\.vue$/,
+          use: 'vue-loader'
+        }
+      ]
   },
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin()]
@@ -56,5 +62,5 @@ module.exports = {
   }), new MiniCssExtractPlugin({
     filename: '[name].css',
     chunkFilename: '[name].css'
-  })]
+  }), new VueLoaderPlugin()]
 };
